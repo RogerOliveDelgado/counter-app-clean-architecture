@@ -4,6 +4,7 @@ import type { CounterStore } from "../domain/counterStore";
 import { getCounterUseCase } from "../useCases/getCounterUseCase";
 import { incrementCounterUseCase } from "../useCases/incrementCounterUseCase";
 import { decrementCounterUseCase } from "../useCases/decrementCounterUseCase";
+import { incrementCounterByValueUseCase } from "../useCases/incrementCounterByValueUseCase";
 
 function useCounterViewModel(store: CounterStore) {
   const getCounter = React.useCallback(
@@ -37,13 +38,25 @@ function useCounterViewModel(store: CounterStore) {
     [store.counter, store.updateCounter, store.setCounter]
   );
 
+  const incrementCounterByValue = React.useCallback(
+    function (incrementValue) {
+      incrementCounterByValueUseCase({
+        counter: store.counter,
+        updateCounter: store.updateCounter,
+        setCounter: store.setCounter
+      }, incrementValue)
+    }, 
+    [store.counter, store.updateCounter, store.setCounter]
+  )
+
   return {
     count: store.counter?.value,
     isLoading: typeof store.counter === "undefined" || store.isLoading,
     canDecrement: Number(store.counter?.value) > 0,
     getCounter,
     incrementCounter,
-    decrementCounter
+    decrementCounter,
+    incrementCounterByValue
   };
 }
 

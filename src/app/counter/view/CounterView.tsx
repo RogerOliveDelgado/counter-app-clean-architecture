@@ -21,12 +21,15 @@ const CounterView = () => {
     isLoading,
     getCounter,
     incrementCounter,
-    decrementCounter
+    decrementCounter,
+    incrementCounterByValue
   } = useCounterViewModel(store);
 
   React.useEffect(() => {
     getCounter();
   }, [getCounter]);
+
+  const incrementValue = 7
 
   return (
     <div className="App">
@@ -39,6 +42,7 @@ const CounterView = () => {
           </Button>
           <Count>{count}</Count>
           <Button onClick={incrementCounter}>inc</Button>
+          <Button onClick={() => incrementCounterByValue(incrementValue)}>+5</Button>
         </>
       )}
     </div>
