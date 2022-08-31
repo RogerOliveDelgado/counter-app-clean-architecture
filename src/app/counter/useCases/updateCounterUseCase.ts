@@ -8,7 +8,7 @@ type UpdateCounterStore = Pick<
   "counter" | "updateCounter" | "setCounter"
 >;
 
-const debouncedTask = debounce((task) => Promise.resolve(task()), 500);
+const debouncedTask = debounce((task) => Promise.resolve(task()), 3000);
 
 const updateCounterUseCase = (
   store: UpdateCounterStore,

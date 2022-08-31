@@ -1,13 +1,13 @@
 import type { Counter } from "../domain/counterEntity";
 import { create } from "../domain/counterModel";
 
-let count = 0;
+let count = 15;
 
 function getCounter(): Promise<Counter> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(create(count));
-    }, 1000);
+    }, 1500);
   });
 }
 
